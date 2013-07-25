@@ -23,5 +23,14 @@ module TodomvcServerApi
     config.paths.add "app/api", glob: "**/*.rb"
     config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
 
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :put, :delete, :options]
+      end
+    end
+
   end
 end
